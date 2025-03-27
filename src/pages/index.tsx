@@ -20,9 +20,12 @@ export default function Home() {
 
         <div className="relative">
           <div className="mx-auto max-w-7xl bg-background lg:px-8">
-            <BlogSection />
-            <ProjectSection />
-            <FeaturesSection />
+            {/* Uncomment below to feature recent blog posts on home page */}
+            {/* <BlogSection /> */}
+            {/* Uncomment below to feature recent projects on home page */}
+            {/* <ProjectSection /> */}
+            {/* Uncomment below to feature your skills on home page */}
+            {/* <FeaturesSection /> */}
           </div>
           <div
             className="absolute inset-0 -z-50 bg-grid-slate-50 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.3))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]"
