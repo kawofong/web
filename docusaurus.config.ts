@@ -4,41 +4,36 @@ import { themes } from 'prism-react-renderer'
 import social from './data/social'
 import type { GiscusConfig } from './src/components/Comment'
 
-const beian = '闽ICP备2020017848号-2'
-const beian1 = '闽公网安备35021102000847号'
-
 const config: Config = {
-  title: '愧怍',
-  url: 'https://kuizuo.cn',
+  title: 'Ka Wo Fong',
+  url: 'https://www.kawofong.com',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'kuizuo',
-  projectName: 'blog',
+  organizationName: 'kawofong',
+  projectName: 'web',
   customFields: {
-    bio: '道阻且长，行则将至',
+    bio: 'Passionate technologist',
     description:
-      '是一个由愧怍创建的个人博客，主要分享编程开发知识和项目，该网站基于 React 驱动的静态网站生成器 Docusaurus 构建。',
+      'Ka Wo\'s personal website, built with Docusaurus. The source code is available on GitHub.',
   },
   themeConfig: {
-    // announcementBar: {
-    //   id: 'announcementBar-3',
-    //   content: ``,
-    // },
     image: 'img/og.png',
     metadata: [
       {
         name: 'author',
-        content: '愧怍',
+        content: 'Ka Wo Fong',
       },
       {
         name: 'keywords',
-        content: 'blog, javascript, typescript, node, react, vue, web',
-      },
-      {
-        name: 'keywords',
-        content: '编程爱好者, Web开发者, 写过爬虫, 学过逆向, 主攻ts全栈',
+        content: 'python, google cloud, azure, artificial intelligence, machine learning',
       },
     ],
+    // Only allow light mode because dark mode is not tested yet
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     docs: {
       sidebar: {
         hideable: true,
@@ -46,88 +41,31 @@ const config: Config = {
     },
     navbar: {
       logo: {
-        alt: '愧怍',
-        src: 'img/logo.webp',
-        srcDark: 'img/logo.webp',
+        alt: 'Ka Wo Fong',
+        src: 'img/logo.png',
+        srcDark: 'img/logo.png',
       },
       hideOnScroll: true,
       items: [
-        { label: '博客', position: 'right', to: 'blog' },
-        { label: '项目', position: 'right', to: 'project' },
-        { label: '友链', position: 'right', to: 'friends' },
-        { label: '关于', position: 'right', to: 'about' },
-        {
-          label: '更多',
-          position: 'right',
-          items: [
-            { label: '归档', to: 'blog/archive' },
-            { label: '主题魔改', to: 'docs/docusaurus-guides' },
-          ],
-        },
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
+        // Uncomment below to enable blog posts navigation on navbar
+        // { label: 'Blogs', position: 'right', to: 'blog' },
+        // Uncomment below to enable projects navigation on navbar
+        // { label: 'Projects', position: 'right', to: 'project' },
+        { label: 'About', position: 'right', to: 'about' },
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: '学习',
-          items: [
-            { label: '博客', to: 'blog' },
-            { label: '归档', to: 'blog/archive' },
-            { label: '实战项目', to: 'project' },
-            { label: '前端示例', to: 'https://example.kuizuo.cn' },
-          ],
-        },
-        {
-          title: '社交媒体',
-          items: [
-            { label: '关于我', to: '/about' },
-            { label: 'GitHub', href: social.github.href },
-            { label: 'Twitter', href: social.x.href },
-            { label: '掘金', href: social.juejin.href },
-            { label: 'Discord', href: social.discord.href },
-          ],
-        },
-        {
-          title: '网站',
-          items: [
-            { label: 'js反混淆', to: 'https://js-deobfuscator.kuizuo.cn' },
-            { label: 'cyberChef', to: 'https://gchq.github.io/CyberChef' },
-            { label: 'api服务', to: 'https://api.kuizuo.cn' },
-            { label: '便民服务', to: 'https://service.kuizuo.cn' },
-            { label: '站点监控', to: 'https://uptime.kuizuo.cn' },
-          ],
-        },
-        {
-          title: '更多',
-          items: [
-            { label: '友链', position: 'right', to: 'friends' },
-            {
-              html: `
-                <a href="https://docusaurus.io" target="_blank" rel="noreferrer noopener">
-                  <img src="/img/buildwith.png" alt="build with docusaurus" width="120" height="50"/>
-                </a>
-                `,
-            },
-          ],
-        },
-      ],
+      style: 'light',
+      links: [],
       copyright: `
-        <p style="margin-bottom: 0;"><a href="http://beian.miit.gov.cn/">${beian}</a></p>
-        <p style="display: inline-flex; align-items: center;"><img style="height:20px;margin-right: 0.5rem;" src="/img/police.png" alt="police" height="20"/><a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${
-          beian1.match(/\d+/)?.[0]
-        }" >${beian1}</a></p>
-        <p>Copyright © 2020 - ${new Date().getFullYear()} kuizuo. | Built with Docusaurus.</p>
+        <p>Copyright © 2020 - ${new Date().getFullYear()} kawofong. | Built with Docusaurus.</p>
         `,
     },
+    // TODO: create an algolia account and extract secret from code
     algolia: {
-      appId: 'GV6YN1ODMO',
-      apiKey: '50303937b0e4630bec4a20a14e3b7872',
-      indexName: 'kuizuo',
+      appId: 'xxx',
+      apiKey: 'xxx',
+      indexName: 'index1',
     },
     prism: {
       theme: themes.oneLight,
@@ -147,12 +85,12 @@ const config: Config = {
       ],
     },
     giscus: {
-      repo: 'kuizuo/blog',
-      repoId: 'MDEwOlJlcG9zaXRvcnkzOTc2MjU2MTI=',
+      repo: 'kawofong/web',
+      repoId: 'R_kgDOOP0TMA',
       category: 'General',
-      categoryId: 'DIC_kwDOF7NJDM4CPK95',
+      categoryId: 'DIC_kwDOOP0TMM4CohkL',
       theme: 'light',
-      darkTheme: 'dark_dimmed',
+      darkTheme: 'dark',
     } satisfies Partial<GiscusConfig>,
     tableOfContents: {
       minHeadingLevel: 2,
@@ -227,12 +165,6 @@ const config: Config = {
         showReadingTime: true,
         readingTime: ({ content, frontMatter, defaultReadingTime }) =>
           defaultReadingTime({ content, options: { wordsPerMinute: 300 } }),
-        feedOptions: {
-          type: 'all',
-          title: '愧怍',
-          description: 'feedId:41215011978385457+userId:41840354283324416',
-          copyright: `Copyright © ${new Date().getFullYear()} 愧怍 Built with Docusaurus.<p><a href="http://beian.miit.gov.cn/" class="footer_lin">${beian}</a></p>`,
-        },
       },
     ],
     async function tailwindcssPlugin() {

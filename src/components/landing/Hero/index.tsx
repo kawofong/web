@@ -63,7 +63,7 @@ export default function Hero() {
         <Name />
         <motion.p custom={2} initial="hidden" animate="visible" variants={variants} className="max-lg:px-4">
           <Translate id="homepage.hero.text">
-            A passionate problem solver and a lifelong learner who uses technology pragmatically to solve real-world challenges.
+            A passionate problem solver and a lifelong learner who uses Cloud and AI technologies pragmatically to solve real-world challenges.
           </Translate>
         </motion.p>
         <motion.div custom={3} initial="hidden" animate="visible" variants={variants}>
