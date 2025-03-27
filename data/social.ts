@@ -1,11 +1,7 @@
 export type Social = {
   github?: string
   x?: string
-  juejin?: string
-  qq?: string
-  wx?: string
-  cloudmusic?: string
-  zhihu?: string
+  linkedin?: string
   email?: string
   discord?: string
 }
@@ -18,15 +14,11 @@ type SocialValue = {
 }
 
 const social: Social = {
-  github: 'https://github.com/kuizuo',
-  x: 'https://twitter.com/kuizuo',
-  juejin: 'https://juejin.cn/user/1565318510545901',
-  wx: 'https://img.kuizuo.cn/wechat.png',
-  // qq: 'https://img.kuizuo.cn/qq.png',
-  // zhihu: 'https://www.zhihu.com/people/kuizuo',
-  cloudmusic: 'https://music.163.com/#/user/home?id=1333010742',
-  email: 'mailto:hi@kuizuo.cn',
-  discord: 'https://discord.gg/M8cVcjDxkz',
+  github: 'https://github.com/kawofong',
+  linkedin: 'https://www.linkedin.com/in/kawofong/',
+  // x: 'https://twitter.com/',
+  email: 'mailto:kawofong123@gmail.com',
+  // discord: 'https://discord.gg/',
 }
 
 const socialSet: Record<keyof Social | 'rss', SocialValue> = {
@@ -36,11 +28,11 @@ const socialSet: Record<keyof Social | 'rss', SocialValue> = {
     icon: 'ri:github-line',
     color: '#010409',
   },
-  juejin: {
-    href: social.juejin,
-    title: '掘金',
-    icon: 'simple-icons:juejin',
-    color: '#1E81FF',
+  linkedin: {
+    href: social.linkedin,
+    title: 'LinkedIn',
+    icon: 'ri:linkedin-fill',
+    color: '#C20C0C',
   },
   x: {
     href: social.x,
@@ -48,29 +40,11 @@ const socialSet: Record<keyof Social | 'rss', SocialValue> = {
     icon: 'ri:twitter-x-line',
     color: '#000',
   },
-  wx: {
-    href: social.wx,
-    title: '微信',
-    icon: 'ri:wechat-2-line',
-    color: '#07c160',
-  },
-  zhihu: {
-    href: social.zhihu,
-    title: '知乎',
-    icon: 'ri:zhihu-line',
-    color: '#1772F6',
-  },
   discord: {
     href: social.discord,
     title: 'Discord',
     icon: 'ri:discord-line',
     color: '#5A65F6',
-  },
-  qq: {
-    href: social.qq,
-    title: 'QQ',
-    icon: 'ri:qq-line',
-    color: '#1296db',
   },
   email: {
     href: social.email,
@@ -78,12 +52,7 @@ const socialSet: Record<keyof Social | 'rss', SocialValue> = {
     icon: 'ri:mail-line',
     color: '#D44638',
   },
-  cloudmusic: {
-    href: social.cloudmusic,
-    title: '网易云',
-    icon: 'ri:netease-cloud-music-line',
-    color: '#C20C0C',
-  },
+
   rss: {
     href: '/blog/rss.xml',
     title: 'RSS',
