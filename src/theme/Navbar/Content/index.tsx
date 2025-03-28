@@ -11,7 +11,6 @@ import React, { type ReactNode } from 'react'
 import styles from './styles.module.css'
 
 function useNavbarItems() {
-  // TODO temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
@@ -62,7 +61,6 @@ export default function NavbarContent(): JSX.Element {
   return (
     <NavbarContentLayout
       left={(
-        // TODO stop hardcoding items?
         <>
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
@@ -70,7 +68,6 @@ export default function NavbarContent(): JSX.Element {
         </>
       )}
       right={(
-        // TODO stop hardcoding items?
         // Ask the user to add the respective navbar items => more flexible
         <>
           <NavbarItems items={rightItems} />

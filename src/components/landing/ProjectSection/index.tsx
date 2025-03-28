@@ -43,7 +43,7 @@ const Slider = ({ items }: { items: Project[] }) => {
 export default function ProjectSection() {
   return (
     <Section
-      title={<Translate id="homepage.project.title">项目展示</Translate>}
+      title={<Translate id="homepage.project.title">Projects</Translate>}
       icon="ri:projector-line"
       href="/project"
     >

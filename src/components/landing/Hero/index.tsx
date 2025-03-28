@@ -70,7 +70,8 @@ export default function Hero() {
           <SocialLinks />
         </motion.div>
 
-        <motion.div className="mt-4 flex gap-2" custom={4} initial="hidden" animate="visible" variants={variants}>
+        {/* TODO: uncomment below section to add "About me" button */}
+        {/* <motion.div className="mt-4 flex gap-2" custom={4} initial="hidden" animate="visible" variants={variants}>
           <MovingButton
             borderRadius="1.25rem"
             className="relative z-10 flex items-center rounded-2xl border border-solid border-neutral-200 bg-background px-5 py-3 text-center text-base font-semibold dark:border-neutral-800"
@@ -79,7 +80,7 @@ export default function Hero() {
               <Translate id="hompage.hero.introduce">About me</Translate>
             </a>
           </MovingButton>
-        </motion.div>
+        </motion.div> */}
       </div>
       <motion.div className={styles.background}>
         <HeroSvg />

@@ -51,14 +51,15 @@ const config: Config = {
         // { label: 'Blogs', position: 'right', to: 'blog' },
         // Uncomment below to enable projects navigation on navbar
         // { label: 'Projects', position: 'right', to: 'project' },
-        { label: 'About', position: 'right', to: 'about' },
+        // Uncomment below to enable about section on navbar
+        // { label: 'About', position: 'right', to: 'about' },
       ],
     },
     footer: {
       style: 'light',
       links: [],
       copyright: `
-        <p>Copyright © 2020 - ${new Date().getFullYear()} kawofong. | Built with Docusaurus.</p>
+        <p>Copyright © 2025 - ${new Date().getFullYear()} kawofong. | Built with Docusaurus.</p>
         `,
     },
     // TODO: create an algolia account and extract secret from code
@@ -121,7 +122,7 @@ const config: Config = {
           priority: 0.5,
         },
         gtag: {
-          trackingID: 'G-S4SD5NXWXF',
+          trackingID: 'G-2BRRD0H9L5',
           anonymizeIP: true,
         },
         debug: process.env.NODE_ENV === 'development',
@@ -131,7 +132,6 @@ const config: Config = {
   plugins: [
     'docusaurus-plugin-image-zoom',
     '@docusaurus/plugin-ideal-image',
-    // ['docusaurus-plugin-baidu-tongji', { token: 'c9a3849aa75f9c4a4e65f846cd1a5155' }],
     [
       '@docusaurus/plugin-pwa',
       {
@@ -152,15 +152,15 @@ const config: Config = {
       },
     ],
     [
-      './src/plugin/plugin-content-blog', // 为了实现全局 blog 数据，必须改写 plugin-content-blog 插件
+      './src/plugin/plugin-content-blog',
       {
         path: 'blog',
         editUrl: ({ locale, blogDirPath, blogPath, permalink }) =>
-          `https://github.com/kuizuo/blog/edit/main/${blogDirPath}/${blogPath}`,
+          `https://github.com/kawofong/web/edit/main/${blogDirPath}/${blogPath}`,
         editLocalizedFiles: false,
-        blogDescription: '代码人生：编织技术与生活的博客之旅',
+        blogDescription: 'Ka Wo\' personal website.',
         blogSidebarCount: 10,
-        blogSidebarTitle: '博文',
+        blogSidebarTitle: 'Ka Wo',
         postsPerPage: 12,
         showReadingTime: true,
         readingTime: ({ content, frontMatter, defaultReadingTime }) =>
@@ -189,16 +189,13 @@ const config: Config = {
                 innerHTML: `
     (${function () {
       console.log(
-        `%c Kz Blog %c https://github.com/kuizuo/blog`,
+        `%c Ka Wo Fong %c https://github.com/kawofong/web`,
         'color: #fff; margin: 1em 0; padding: 5px 0; background: #12affa;',
         'margin: 1em 0; padding: 5px 0; background: #efefef;',
       )
 
       const motto = `
-This Webisite Powered By Kz Blog.
-Written by Docusaurus, Coding with Love.
---------
-Love what you do and do what you love.
+This website is powered by Ka Wo Fong.
 `
 
       if (document.firstChild?.nodeType !== Node.COMMENT_NODE) {
@@ -217,7 +214,7 @@ Love what you do and do what you love.
       tagName: 'meta',
       attributes: {
         name: 'description',
-        content: '愧怍的个人博客',
+        content: 'Ka Wo\'s personal website',
       },
     },
   ],
@@ -227,8 +224,8 @@ Love what you do and do what you love.
     'https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Semibold.min.css',
   ],
   i18n: {
-    defaultLocale: 'zh-CN',
-    locales: ['zh-CN'],
+    defaultLocale: 'en',
+    locales: ['en'],
   },
   onBrokenLinks: 'warn',
 }

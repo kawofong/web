@@ -4,27 +4,27 @@
     "description": "hero greet"
   },
   "homepage.hero.name": {
-    "message": "Kuizuo",
+    "message": "Ka Wo",
     "description": "hero name"
   },
   "homepage.hero.text": {
-    "message": "Here I will share the problems and solutions encountered by various technology stacks, take you to understand the latest technology stacks and how to apply them in actual development, and hope that my development experience will inspire you",
+    "message": "A passionate engineer, problem solver, and lifelong learner who uses Cloud and AI technologies pragmatically to solve real-world challenges.",
     "description": "hero text"
   },
   "hompage.hero.introduce": {
-    "message": "Introduce"
+    "message": "About me"
   },
   "homepage.blog.title": {
-    "message": "Recent Blogs"
+    "message": "Blogs"
   },
   "homepage.lookMore": {
-    "message": "Look More"
+    "message": "Learn more"
   },
   "homepage.project.title": {
-    "message": "Project Showcase"
+    "message": "Projects"
   },
   "homepage.feature.title": {
-    "message": "Feature"
+    "message": "Expertise"
   },
   "homepage.feature.developer": {
     "message": "Typescript Developer"

@@ -1,16 +1,15 @@
 {
-  "name": "blog",
+  "name": "web",
   "version": "3.0.0",
   "author": {
-    "url": "https://github.com/kuizuo",
-    "email": "hi@kuizuo.cn",
-    "name": "愧怍"
+    "url": "https://github.com/kawofong",
+    "name": "Ka Wo Fong"
   },
   "repository": {
-    "url": "https://github.com/kuizuo/blog",
+    "url": "https://github.com/kawofong/web",
     "type": "git"
   },
-  "homepage": "https://kuizuo.cn",
+  "homepage": "https://www.kawofong.com",
   "license": "MIT",
   "scripts": {
     "docusaurus": "docusaurus",
