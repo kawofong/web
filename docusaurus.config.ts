@@ -10,6 +10,7 @@ const config: Config = {
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'kawofong',
+  deploymentBranch: 'gh-pages', // Default GitHub Pages deployment branch
   projectName: 'web',
   customFields: {
     bio: 'Passionate technologist',
