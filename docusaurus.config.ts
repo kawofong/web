@@ -6,11 +6,10 @@ import type { GiscusConfig } from './src/components/Comment'
 
 const config: Config = {
   title: 'Ka Wo Fong',
-  url: 'https://www.kawofong.com',
-  baseUrl: '/',
+  url: 'https://kawofong.github.io',
+  baseUrl: '/web',
   favicon: 'img/favicon.ico',
   organizationName: 'kawofong',
-  deploymentBranch: 'gh-pages', // Default GitHub Pages deployment branch
   projectName: 'web',
   customFields: {
     bio: 'Passionate technologist',
