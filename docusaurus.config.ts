@@ -51,8 +51,7 @@ const config: Config = {
         // { label: 'Blogs', position: 'right', to: 'blog' },
         // Uncomment below to enable projects navigation on navbar
         // { label: 'Projects', position: 'right', to: 'project' },
-        // Uncomment below to enable about section on navbar
-        // { label: 'About', position: 'right', to: 'about' },
+        { label: 'About', position: 'right', to: 'about' },
       ],
     },
     footer: {
