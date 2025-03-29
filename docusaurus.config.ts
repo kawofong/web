@@ -6,8 +6,8 @@ import type { GiscusConfig } from './src/components/Comment'
 
 const config: Config = {
   title: 'Ka Wo Fong',
-  url: 'https://kawofong.github.io',
-  baseUrl: '/web',
+  url: 'https://kawofong.com',
+  baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'kawofong',
   projectName: 'web',
