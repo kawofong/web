@@ -52,7 +52,7 @@ deploy the Docusaurus site 🦖 to GitHub Pages.
 
 1. In your forked repository, configure GitHub Pages to build from GitHub Actions.
 
-![GitHub Pages build from GitHub Actions configuration](./static/img/docs/github-pages-config.png)
+    ![GitHub Pages build from GitHub Actions configuration](./static/img/docs/github-pages-config.png)
 
 1. Follow instructions in the [local development][1] section (above) to make changes.
 
