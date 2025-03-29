@@ -13,11 +13,11 @@ import styles from './styles.module.css'
 
 const TITLE = translate({
   id: 'theme.project.title',
-  message: '项目',
+  message: 'Projects',
 })
 const DESCRIPTION = translate({
   id: 'theme.project.description',
-  message: '学而无用，不如学而用之。这里是我在技术领域中努力实践和应用的最佳证明。',
+  message: 'Past projects and open source contributions.',
 })
 
 type ProjectState = {
@@ -41,14 +41,6 @@ function ShowcaseHeader() {
     <section className="text-center">
       <h2>{TITLE}</h2>
       <p>{DESCRIPTION}</p>
-      {/* <a
-        className="button button--primary"
-        href={GITHUB_URL}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Translate id="showcase.header.button">前往 Github 克隆项目</Translate>
-      </a> */}
     </section>
   )
 }

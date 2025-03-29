@@ -41,12 +41,6 @@
   "theme.blog.archive.posts.unit": {
     "message": "posts"
   },
-  "theme.project.title": {
-    "message": "Project Showcase"
-  },
-  "theme.project.description": {
-    "message": "Here is the best proof of my hard practice and application in the field of technology."
-  },
   "showcase.header.button": {
     "message": "Go to Github to clone"
   },

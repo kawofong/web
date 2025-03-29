@@ -2,7 +2,7 @@ export const projects: Project[] = [
   {
     title: 'Ka Wo\'s Website',
     description: 'Personal website built using Docusaurus 🦖',
-    preview: '/img/project/blog.png',
+    preview: '/img/project/web.png',
     website: 'https://www.kawofong.com',
     source: 'https://github.com/kawofong/web',
     tags: ['open_source', 'react', 'favorite'],
