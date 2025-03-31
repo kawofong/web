@@ -17,7 +17,7 @@ const TITLE = translate({
 })
 const DESCRIPTION = translate({
   id: 'theme.project.description',
-  message: 'Past projects and open source contributions.',
+  message: '',
 })
 
 type ProjectState = {

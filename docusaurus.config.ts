@@ -49,8 +49,7 @@ const config: Config = {
       items: [
         // Uncomment below to enable blog posts navigation on navbar
         // { label: 'Blogs', position: 'right', to: 'blog' },
-        // Uncomment below to enable projects navigation on navbar
-        // { label: 'Projects', position: 'right', to: 'project' },
+        { label: 'Projects', position: 'right', to: 'project' },
         { label: 'About', position: 'right', to: 'about' },
       ],
     },
