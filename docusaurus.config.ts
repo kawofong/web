@@ -62,9 +62,9 @@ const config: Config = {
     },
     // TODO: create an algolia account and extract secret from code
     algolia: {
-      appId: 'xxx',
-      apiKey: 'xxx',
-      indexName: 'index1',
+      appId: '8WTA4XSD3U',
+      apiKey: '81b6a3a6507fe0845f919fa46028eb2c',
+      indexName: 'kawofong',
     },
     prism: {
       theme: themes.oneLight,
