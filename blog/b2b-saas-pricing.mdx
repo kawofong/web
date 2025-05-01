@@ -1,0 +1,211 @@
+---
+slug: b2b-saas-pricing
+title: "B2B SaaS: A Practical Guide to Choosing Pricing Model"
+date: 2025-05-02
+authors: kawofong
+tags: [Startup, SaaS, B2B]
+keywords: [Startup, Pricing, SaaS, B2B]
+description: Share a practical experience of helping a B2B SaaS startup define their pricing model
+image: https://ik.imagekit.io/kawofong/kawofong.com/money.avif?updatedAt=1746061215711
+---
+
+This blog walks through how early-stage founders can choose, implement, and iterate on
+B2B SaaS pricing models using trusted resources.
+
+<!-- truncate -->
+
+In the whirlwind of launching a SaaS product, one of the toughest early decisions is pricing.
+Recently, the founders of [FlexEM](https://flex-em.app/),
+a cross-platform personalized exercise management app for gyms, approached me for help.
+FlexEM enable gyms to deliver a digital personalized experiences for members,
+making easier for members to measure their training progress and reach their fitness goals
+using real-time analytics.
+
+Coming from engineering backgrounds, the founders were overwhelmed by the sea of SaaS pricing advice online —
+especially in today’s age of information overload. In this post,
+I’ll share the resources I found most helpful and walk through how we navigated pricing trade-offs together.
+
+## 📚 Resources That Helped Me Learn Pricing
+
+I’m not a pricing expert by training — no MBA, no formal experience — but as a curious product builder,
+I had to learn just enough to make informed decisions. These 4 resources stood out:
+
+- [Startup Business Models and Pricing](https://www.youtube.com/watch?v=oWZbWzAyHAE) by
+[Aaron Epstein](https://www.linkedin.com/in/aaron-epstein-a97105/) (video)
+- [The art and science of pricing](https://www.youtube.com/watch?v=A6veeCbKIzw) by
+[Madhavan Ramanujam](https://www.linkedin.com/in/madhavansf/) (podcast)
+- [Pricing your SaaS product](https://www.lennysnewsletter.com/p/saas-pricing-strategy) by
+[Patrick Campbell](https://www.linkedin.com/in/patrickccampbell/) (blog)
+- [Monetizing Innovation](https://www.amazon.com/Monetizing-Innovation-Companies-Design-Product/dp/1119240867) by
+[Madhavan Ramanujam](https://www.linkedin.com/in/madhavansf/) (book)
+
+Each of the resources offers a different lens — from conceptual frameworks to tactical playbooks.
+I personally have watched and read these resources multiple times and I highly recommend them for
+any early-stage founder or product leaders.
+
+## 💡 Key Takeaways
+
+There are 3 principles that consistently stood out from the [resources](#resources).
+
+### 1. Price is a measurement of value
+
+Pricing is an indicator of how much value your product delivers. It's important
+to ensure the price correlates with the tangible and perceived benefits your product offers.
+
+:::info
+
+There are many ways you can quantify product values. Here are some practical methods I have used,
+ranging from low to high effort required to implement:
+
+1. Evaluate pricing for your competitors.
+    - This is often a good starting point, but it assumes your competitors have a valid
+    value-based pricing model.
+1. Estimate based on market research.
+    - Use ChatGPT and the Internet! If you are building a marketing SaaS product,
+    estimate the average customer acquisition cost (CAC) for your target customer segment
+    and how your product can help them reduce CAC.
+1. Run pilot programs with your users.
+    - Offer a limited trial and work with users to measure their business objectives
+    before and after adoption.
+
+:::
+
+### 2. You should charge your users for your product
+
+Paying customers validates that your product solves a real problem. Free users give feedback,
+but paying users give proof. Early revenue is also a forcing function for focus and product quality.
+
+:::warning
+
+Some early-stage founders are afraid to charge users, fearing user churn. However,
+in my experience, having paid customers signals that you have a differentiating product,
+instead of a pet project.
+
+:::
+
+### 3. Iterate and experiment with product pricing
+
+Your first pricing model will almost never be your best. You should treat pricing like a
+product feature: experiment, learn, and adapt based on customer behavior and feedback.
+
+:::tip
+
+Finding the ideal price is an iterative process. A practical tactic to finding an ideal price is
+to keep raising the price incrementally until you get push backs from the customer.
+
+**The ideal price point is often a price where customers complain, but still pay for the product.**
+
+:::
+
+## 🏋️ Applying It: FlexEM
+
+FlexEM helps gyms upsell by offering personalized trainer and training sessions to members.
+But measuring direct revenue impact was tricky because gyms often run
+multiple marketing campaigns in parallel.
+
+Hence, it's important to define **proxy metrics**, which are indirect indicators that reflect
+the value your product delivers to customers when direct revenue impact is difficult to measure.
+
+Instead of revenue impact for the gyms, we defined the following proxy metrics which our product will optimize:
+
+- Number of training sessions booked
+- Number of referrals shared through the app
+
+These tied indirectly to gym revenue and helped guide the pricing model.
+
+## 🔍 Comparing 3 Common B2B SaaS Pricing Models
+
+For early-stage startup, the founders should focus their energy and investment on finding their
+product-market fit (PMF). While pricing is an essential component of PMF, avoid spending too much
+energy on perfecting on the pricing models.
+
+Instead, the goal should be to pick a pricing model that aligns with your product’s value delivery,
+execute, then iterate on your pricing model based on customer feedback.
+
+Rather than exhaustively listing all pricing types, I’ll compare trade-offs among
+3 popular B2B SaaS pricing models: **subscription**, **usage-based**, and **freemium**.
+
+### 1. Subscription
+
+The [subscription model](https://stripe.com/resources/more/saas-pricing-models-101#types-of-saas-pricing-models)
+charges customers a recurring fee (monthly or annually) for
+continued access to the product. It’s great for early-stage startups because it provides
+predictable revenue and the customers know exactly how much they need to pay per period.
+However, the subscription model can be limiting if your product's value doesn't scale
+linearly with time, or if customers are unsure about upfront commitment.
+
+Example: [Netflix](https://help.netflix.com/en/node/24926), [Salesforce Small Business](https://www.salesforce.com/small-business/pricing/)
+
+For FlexEM, a subscription model could provide **predictable revenue**
+but might not capture the **varying value delivered to different sizes of gyms**
+(which can be solved by tiered pricing).
+
+### 2. Usage-based
+
+In a [usage-based model](https://stripe.com/resources/more/saas-pricing-models-101#types-of-saas-pricing-models),
+customers pay based on how much they use the product —
+whether it’s API calls, volume of data storage, or number of transactions.
+This model reduces friction to onboard new users and naturally aligns pricing with the value delivered.
+But it can be harder to implement technically, makes revenue less predictable,
+and makes it more difficult for customers to forecast their costs.
+
+Example: [Stripe](https://stripe.com/pricing), [Twilio](https://www.twilio.com/en-us/pricing)
+
+FlexEM could charge based on **number of training sessions or new memberships**,
+directly tying revenue to value creation.
+
+### 3. Freemium
+
+The [freemium model](https://stripe.com/resources/more/saas-pricing-models-101#types-of-saas-pricing-models)
+offers a free version of the product with limited features,
+with the goal of converting some users to a paid tier. It’s great for driving top-of-funnel growth
+and letting users experience value before committing. The downside is it can attract
+non-serious users, generate support overhead, and delay valuable pricing feedback unless
+conversions are carefully tracked.
+
+Example: [Dropbox](https://www.dropbox.com/plans), [Slack](https://app.slack.com/plans/TNWA8QCGZ)
+
+FlexEM could offer gyms basic listing services for free while charging them for premium features.
+This could help FlexEM quickly build a two-sided marketplace.
+
+## ⚖️ Trade-offs Summary
+
+| Criteria                   | Subscription       | Usage-Based            | Freemium                  |
+|---------------------------|--------------------|-------------------------|---------------------------|
+| Predictable revenue        | ✅ High            | ❌ Low                  | ❌ Very low               |
+| Predictable cost (customer)| ✅ High            | ❌ Variable             | ✅ Free (until upgrade)   |
+| Onboarding friction        | ⚪ Medium          | ✅ Low                  | ✅ Very low               |
+| Value alignment            | ⚪ Medium; hard to quantify | ✅ High          | ⚪ Medium; delayed until conversion |
+| Revenue expansion          | ⚪ Medium; via tiers | ✅ Built-in           | ✅ Via conversion         |
+| Engineering effort         | ✅ Low             | ⚪ Medium; needs metering | ⚪ Medium; access control |
+| Support overhead           | ✅ Low             | ⚪ Volume-dependent      | ❌ High; many free users  |
+| Time to revenue            | ✅ Fast            | ⚪ Usage-dependent       | ❌ Slow; conversion lag   |
+| Fit for PLG motion         | ⚪ Okay            | ✅ Strong                | ✅ Strong                 |
+
+## 🧭 What’s next
+
+With a solid understanding of the trade-offs between pricing models, the next step for the founders is
+to make an informed decision on which model best aligns with their product, target customers, and
+go-to-market motion. There’s no universally perfect choice — what matters is picking a model that
+supports how their product delivers value today.
+
+Once a model is chosen, the founders can test pricing sensitivity by presenting different options to
+prospect segments and measuring interest levels, even before integrating the pricing model into their product.
+
+From there, the founders would roll out their pricing model: update pricing page, integrate
+pricing model into product, and begin converting users into paying customers.
+
+Pricing is a living strategy. After choosing and implementing a pricing model, the founders
+are advised to monitor customer behavior closely and
+treat pricing as something to test and evolve.
+This includes experimenting with price points, packaging, and
+even shifts their pricing model as the product and customer base mature.
+
+## 📬 How I can help
+
+If you're tackling industry challenges and want advise on product engineering, data, and AI topics,
+shoot me an [email](mailto:kawofong123@gmail.com) — happy to chat and share insights.
+
+If you found this blog helpful, please cite this as:
+
+> Fong, Ka Wo. (Apr 2025). How should a B2B SaaS startup price their product? kawofong.com. https://kawofong.com/blog/b2b-saas-pricing.

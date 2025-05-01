@@ -143,7 +143,7 @@
     "message": "推荐阅读"
   },
   "theme.blog.title.new": {
-    "message": "最新博客"
+    "message": "博客"
   },
   "theme.blog.tagTitle": {
     "message": "{nPosts} 含有标签「{tagName}」",

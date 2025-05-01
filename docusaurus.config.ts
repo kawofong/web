@@ -47,8 +47,7 @@ const config: Config = {
       },
       hideOnScroll: true,
       items: [
-        // Uncomment below to enable blog posts navigation on navbar
-        // { label: 'Blogs', position: 'right', to: 'blog' },
+        { label: 'Blogs', position: 'right', to: 'blog' },
         { label: 'Projects', position: 'right', to: 'project' },
         { label: 'About', position: 'right', to: 'about' },
       ],
