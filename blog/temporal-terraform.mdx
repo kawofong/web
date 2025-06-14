@@ -1,0 +1,227 @@
+---
+slug: temporal-terraform-best-practices
+title: "Best Practices: Terraform on Temporal Cloud"
+date: 2025-06-14
+authors: kawofong
+tags: [Temporal, Platform]
+keywords: [Temporal, Platform, Terraform, DevOps]
+description: Provides recommendations for your Temporal Cloud Terraform configurations.
+image: https://ik.imagekit.io/kawofong/kawofong.com/temporal-terraform-space.jpeg?updatedAt=1749893270605
+---
+
+# Best Practices: Terraform on Temporal Cloud
+
+## Introduction
+
+Over the past few months, I’ve worked with multiple teams building business-critical systems on [Temporal Cloud](https://temporal.io/cloud),
+helping them operationalize their Temporal Cloud deployments using [Terraform](https://developer.hashicorp.com/terraform) as the primary infrastructure-as-code interface.
+Temporal Cloud offers two methods for infrastructure automation: Terraform and [Cloud Operations API](https://docs.temporal.io/ops).
+
+When choosing between Terraform and Cloud Ops API, my recommendation is to use Terraform unless it doesn't address your requirements.
+Terraform is declarative, reproducible, and has built-in mechanism to prevent configuration drift, ensuring that the declarative state is aligned with the actual deployed state.
+These capabilities are difficult to achieve when you are building on top of imperative API calls, like Cloud Ops API.
+
+:::info
+
+[Temporal Cloud Terraform provider](https://registry.terraform.io/providers/temporalio/temporalcloud/latest/docs) is implemented using the Cloud Ops API.
+
+:::
+
+In this post, I’ll walk through my recommendations for managing Temporal Cloud using the Terraform Temporal Cloud provider.
+
+
+## Terraform foundation
+
+There’s no shortage of guidance on how to write and organize Terraform code.
+To keep things [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), I’ll point to three resources that have meaningfully influenced how I structure Terraform projects:
+
+* Coding style
+    1. [Terraform Language Style Guide](https://developer.hashicorp.com/terraform/language/style)
+    2. [Terraform Best Practices](https://spacelift.io/blog/terraform-best-practices)
+* Adoption framework
+    1. [Terraform Recommended Practices](https://developer.hashicorp.com/terraform/cloud-docs/recommended-practices)
+
+Below, I will highlight a few essential Terraform best practices.
+
+### 📌 Pin provider versions explicitly
+
+In the past, I used `~>`, `>=`, and `<=` to constrain provider versions in production, and that caused a deployment incident when one of the providers published a backward-incompatible update.
+Because most Terraform providers are maintained by engineers from third-party organizations or the community, it is inevitable that a mistake would be made.
+Hence, my recommendation is to always pin specific provider versions and upgrade only after testing, to avoid breakages from backward-incompatible changes.
+
+```hcl
+terraform {
+  required_providers {
+    temporal = {
+      source  = "temporalio/temporal"
+      version = "= 0.8.3"
+    }
+  }
+}
+```
+
+:::tip
+
+To streamline provider version upgrades, I recommend using an automated dependency tooling like [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide).
+
+:::
+
+### 🌐 Use remote state
+
+By default, Terraform uses a [`local`](https://developer.hashicorp.com/terraform/language/backend/local) backend, which stores state as a local file on disk.
+This makes coordination between team members and automation difficult and insecure.
+Hence, I recommend using a remote backend (like `azurerm`, `gcs`, `s3`) and restrict access to the remote state file to required user & service accounts.
+
+The best practices to using remote state in Terraform is out of scope for this article.
+If you choose to use a remote backend, I recommend reviewing their [respective documentation](https://developer.hashicorp.com/terraform/language/backend).
+
+## Temporal Cloud provider recommendations
+
+When you are using the Temporal Cloud Terraform provider, you will have to make certain design decisions.
+I will highlight some of the decisions I encountered and share my recommendations.
+
+### 📁 Namespace naming convention
+
+Use the following pattern to name Temporal namespaces: `<use-case>-<domain>-<region>-<environment>`
+
+Use the following rules to ensure that a namespace name doesn’t exceed [39 characters](https://docs.temporal.io/cloud/namespaces#temporal-cloud-namespace-name):
+
+* Use at most 10 characters for use case (e.g. `payments`, `fulfill`)
+* Use at most 10 characters for domain (e.g. `checkout`, `notify`)
+* Use at most 5 characters for region (e.g. `aps1`, `apse1`)
+* Use at most 3 characters for environment (e.g. `dev`, `prd`)
+
+Examples: `payments-checkout-dev`, `payments-checkout-prd`, `fulfill-notify-prd`
+
+Why this pattern?
+
+* Simple and easy to understand.
+* Complies to [Temporal Cloud namespace requirements](https://docs.temporal.io/cloud/namespaces#temporal-cloud-namespace-name)
+* Clearly separates environments (e.g. `dev`, `prod`)
+* Groups related services under domains that organization has defined
+* Namespace level [system limits](https://docs.temporal.io/cloud/limits#namespace-level) are isolated across different services and environments.
+
+:::info
+
+A Temporal Cloud account can have up to [100 namespaces](https://docs.temporal.io/cloud/limits#namespaces).
+This is a soft limit, which can be increased by opening a support ticket.
+
+:::
+
+### 🔎 Include standard custom search attributes
+
+As you are designing a naming convention for your namespaces, you should consider a standard set of [custom search attributes](https://docs.temporal.io/search-attribute#custom-search-attribute) for all of your workflow executions.
+To define ownership of workflow executions, it is recommended that you define an `owner` attribute of type `Keyword` that links workflow executions to their directly responsible individuals (DRIs).
+This reduces the time required to find the DRI and [mean-time-to-repair](https://sre.google/sre-book/testing-reliability/) when a workflow exhibits faulty behaviors.
+
+:::info
+
+When defining custom search attributes in Temporal Cloud, carefully select the appropriate data type based on your query patterns — using `Keyword` for exact matches, `Text` for full-text search, and numeric types for range queries.
+For the full list of supported types, see [Custom Search Attributes | Temporal Doc](https://docs.temporal.io/search-attribute#custom-search-attribute).
+
+:::
+
+### 🤖 Use a service account for Terraform
+
+When you are using the [Temporal Cloud Terraform provider](https://registry.terraform.io/providers/temporalio/temporalcloud/latest/docs), you have to supply a Temporal Cloud API key.
+
+:::warning
+
+Avoid hard-coding API keys and credentials in Terraform configurations.
+Temporal recommends passing the API key to their provider via environment variable (i.e. `TEMPORAL_CLOUD_API_KEY`).
+
+:::
+
+For infrastructure automation, it is recommended that you create a [service account](https://docs.temporal.io/cloud/service-accounts) and generate an API key for the service account.
+Avoid using an user account API key because your infrastructure automation would likely break when a specific employee leaves your company.
+
+### 🔄 Rotate your API keys
+
+The maximum expiration time for an API key is [2 years](https://docs.temporal.io/cloud/api-keys#faqs).
+Based on your security policy, it is recommended to create a plan to rotate your API keys regularly.
+The steps to rotate your API key is documented [here](https://docs.temporal.io/cloud/api-keys#rotate-an-api-key).
+
+### 🔒 Protect namespaces from deletion
+
+When managing Temporal Cloud namespaces using the UI and [`tcld`](https://docs.temporal.io/cloud/tcld), [deletion protection](https://docs.temporal.io/cloud/namespaces#delete-protection) can be enabled to prevent accidental namespace deletion.
+At the time of writing, the support for deletion protection is not available for the [`temporalcloud_namespace`](https://registry.terraform.io/providers/temporalio/temporalcloud/latest/docs/resources/namespace) resource.
+Hence, it is recommended to use Terraform meta-argument [`prevent_destroy`](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy) to prevent business critical namespaces (e.g. production) from accidental deletion.
+
+:::info
+
+A feature request to add deletion protection support to `temporalcloud_namespace` is filed [here](https://github.com/temporalio/terraform-provider-temporalcloud/issues/282).
+When the feature is shipped, I recommend switching from the `prevent_destroy` approach to using the new feature.
+
+:::
+
+### 👤 Prefer SSO and SCIM for user management
+
+Temporal Cloud Terraform provider supports [`temporalcloud_user`](https://registry.terraform.io/providers/temporalio/temporalcloud/latest/docs/resources/user) for managing Temporal Cloud users.
+When possible, it is recommended to use [SCIM](https://docs.temporal.io/cloud/scim) and [SSO](https://docs.temporal.io/cloud/saml), instead of Terraform, to manage users.
+By using these protocols, you eliminate the operational overhead of maintaining separate user credentials and permissions within Temporal Cloud, and centralize user management in your organization's identity provider.
+SSO eliminates password fatigue and enforces your organization's authentication policies (including MFA requirements).
+SCIM inherits the benefits of using SSO. In addition, SCIM automates user account provisioning and de-provisioning, ensuring access consistency between your identify platform and Temporal Cloud.
+
+:::info
+
+SSO is available for Business, Enterprise, and Mission Critical users (note that Business plan users require an add-on fee).
+SCIM is accessible to Enterprise and Mission Critical users.
+
+:::
+
+### 📈 Configure metrics endpoint
+
+Use the `temporalcloud_metrics_endpoint` resource to configure your [Temporal Cloud metrics endpoint](https://docs.temporal.io/production-deployment/cloud/metrics/reference).
+If you are using Datadog, follow [this](https://docs.temporal.io/cloud/metrics/datadog) to export Temporal Cloud metrics to Datadog.
+If you are using Prometheus and Grafana, you should reference [this](https://docs.temporal.io/cloud/metrics/prometheus-grafana) to configure scraping and Grafana dashboards.
+
+### 🧪 Test your Temporal Cloud setup
+
+After provisioning your Temporal Cloud namespaces with Terraform, validate your deployment by executing a simple "hello world" workflow against your new namespaces to confirm that authentication, network connectivity, and configurations are established properly.
+A sample "hello world" workflow is available [here](https://github.com/temporalio/samples-python/blob/main/hello/hello_mtls.py).
+
+## Gotchas
+
+### 🔑 `temporalcloud_apikey` in Terraform state
+
+As of [v0.8.0](https://registry.terraform.io/providers/temporalio/temporalcloud/0.8.0/docs/resources/user), the API key value of the [`temporalcloud_apikey`](https://registry.terraform.io/providers/temporalio/temporalcloud/latest/docs/resources/apikey) resource is stored in the Terraform state.
+If you are using `temporalcloud_apikey`, I recommend following the best practice for [securing your remote Terraform state](#2-use-remote-state).
+
+:::info
+
+If this is a problem for you, upvote this [feature request](https://github.com/temporalio/terraform-provider-temporalcloud/issues/306).
+
+:::
+
+### ⛰️ Changing namespace region
+
+As of [v0.8.0](https://registry.terraform.io/providers/temporalio/temporalcloud/0.8.0/docs/resources/user), your namespace will be replaced (destroy-then-recreate) when its region is updated.
+This operation will terminate running workflow executions and erase workflow execution history.
+
+Updating the region of an existing namespace is currently not supported in Temporal Cloud.
+
+:::info
+
+If this is a problem for you, upvote this [feature request](https://github.com/temporalio/terraform-provider-temporalcloud/issues/254).
+
+:::
+
+
+## Summary
+
+To recap, here are the key takeaways for Terraforming Temporal Cloud effectively:
+
+- [Pin Terraform provider versions explicitly](#-pin-provider-versions-explicitly)
+- [Store Terraform state remotely](#-use-remote-state)
+- [Create a naming convention for your namespaces](#-namespace-naming-convention)
+- [Define standard custom search attributes](#-include-standard-custom-search-attributes)
+- [Use a service account for Terraform](#-use-a-service-account-for-terraform)
+- [Rotate your API keys](#-rotate-your-api-keys)
+- [Protect business critical namespaces from accidental deletion](#-protect-namespaces-from-deletion)
+- [Use SSO and SCIM whenever possible](#-prefer-sso-and-scim-for-user-management)
+- [Configure metrics endpoint](#-configure-metrics-endpoint)
+- [Test your Temporal Cloud setup](#-test-your-temporal-cloud-setup)
+
+You can find a reference Terraform implementation of Temporal Cloud at [https://github.com/kawofong/temporal-terraform](https://github.com/kawofong/temporal-terraform)
+
+I'd love to hear how you're tackling infrastructure challenges in your own Temporal Cloud deployments! Share your biggest Terraform + Temporal Cloud learning (and pain points) in the comments below.
